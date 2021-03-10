@@ -47,7 +47,7 @@ platform :ios do
     github_release = set_github_release(
       repository_name: "Mo7amedFouad/XCFrameworks",
       api_token: ENV["GITHUB_TOKEN"],
-      name: "New dependencies",
+      name: "Update dependencies",
       tag_name: tag_name,
       description: (File.read("changelog") rescue "No changelog provided"),
       commitish: "master",
@@ -63,6 +63,9 @@ platform :ios do
       }
     )
     # Commit to master
+    git_commit(
+      message: "Update dependencies #{tag_name}"
+    )
     push_to_git_remote()
   end
 
