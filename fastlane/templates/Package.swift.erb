@@ -1,0 +1,33 @@
+// swift-tools-version:5.3
+// The swift-tools-version declares the minimum version of Swift required to build this package.
+
+import PackageDescription
+
+let package = Package(
+    name: "XCFrameworks",
+    defaultLocalization: "en",
+    platforms: [
+        .iOS(.v12)
+    ],
+    products: [
+        .library(
+            name: "XCFrameworks",
+            targets: [
+                <% xcframeworks.each do |xcframework| %>
+                    "<%= xcframework[:name] %>",
+                <% end %>
+                ]
+            )
+    ],
+    dependencies: [
+    ],
+    targets: [
+        <% xcframeworks.each do |xcframework| %>
+            .binaryTarget(
+                name: "<%= xcframework[:name] %>",
+                url: "<%= xcframework[:url] %>",
+                checksum: "<%= xcframework[:checksum] %>"           
+            ),
+        <% end %>
+    ]
+)

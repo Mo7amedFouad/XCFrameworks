@@ -1,0 +1,69 @@
+Encoding.default_external = Encoding::UTF_8
+
+default_platform :ios
+
+platform :ios do
+  before_all do
+    xcversion(version: "12.4")
+  end
+
+  lane :generate do |options|
+    tag_name = options[:tag_name]
+    UI.crash! "tag name cannot be empty!" if tag_name.empty?
+
+    # build all dependencies using xcframework option
+    carthage(
+      command: 'bootstrap',
+      use_xcframeworks: true,
+      use_binaries: false,
+      cache_builds: true,
+      use_ssh: true
+    )
+
+    # zip all xcframework 
+    xcframeworks = [] 
+    xcframework_paths = []
+    Dir.chdir("..") do
+      Find.find('Carthage/Build/') do |path|
+        xcframework_paths << path if path =~ /.*\.xcframework$/
+      end
+    end
+    xcframework_paths.each do |xcframework_path|
+      xcframework_name = xcframework_path.split('/').last
+      zip_path = "zipped/#{xcframework_name}.zip"
+      zip(
+        path: xcframework_path,
+        output_path: zip_path
+      )
+      checksum = Digest::SHA256.hexdigest File.read "../#{zip_path}"
+      xcframeworks << {
+        :name => xcframework_name, 
+        :checksum => "#{checksum}",
+        :url => "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/#{tag_name}/#{xcframework_name}.zip"
+      }
+    end
+
+    # Upload all xcframeworks to github release
+    github_release = set_github_release(
+      repository_name: "Mo7amedFouad/XCFrameworks",
+      api_token: ENV["GITHUB_TOKEN"],
+      name: "New dependencies",
+      tag_name: tag_name,
+      description: (File.read("changelog") rescue "No changelog provided"),
+      commitish: "master",
+      upload_assets: Dir.glob("../zipped/*").map{ |file| File.expand_path(file) }
+    )
+
+    # Generate Package.swift
+    erb(
+      template: "fastlane/templates/Package.swift.erb",
+      destination: "Package.swift",
+      placeholders: {
+        :xcframeworks => xcframeworks      
+      }
+    )
+    # Commit to master
+    push_to_git_remote()
+  end
+
+end
