@@ -13,6 +13,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Generate artifacts 
+      env:
+          PERSONAL_GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
       run: |
         # Fastlane requires the UTF-8 encoding
         export LANG=en_US.UTF-8
