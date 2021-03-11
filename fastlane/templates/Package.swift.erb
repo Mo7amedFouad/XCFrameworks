@@ -10,14 +10,12 @@ let package = Package(
         .iOS(.v12)
     ],
     products: [
+    <% xcframeworks.each do |xcframework| %>
         .library(
-            name: "XCFrameworks",
-            targets: [
-                <% xcframeworks.each do |xcframework| %>
-                    "<%= xcframework[:name] %>",
-                <% end %>
-                ]
-            )
+            name: "<%= xcframework[:name] %>",
+            targets: ["<%= xcframework[:name] %>"]
+        )
+     <% end %>
     ],
     dependencies: [
     ],
