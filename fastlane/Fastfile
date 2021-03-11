@@ -28,8 +28,7 @@ platform :ios do
       platform: 'iOS',
       use_xcframeworks: true,
       use_binaries: false,
-      cache_builds: true,
-      no_checkout: true
+      cache_builds: true
     )
 
     # convert all universal (FAT) frameworks to xcframeworks
