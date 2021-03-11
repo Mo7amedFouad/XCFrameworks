@@ -1,0 +1,21 @@
+name: Swift
+
+on:
+  workflow_dispatch:
+    inputs:
+      tagName:
+        description: "Tag name"
+        required: true
+        default: "0.0.1"
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Generate artifacts 
+      run: |
+        # Fastlane requires the UTF-8 encoding
+        export LANG=en_US.UTF-8
+
+        # Trigger fastlane
+        fastlane generate tag_name: ${{github.event.inputs.tagName }} --verbose
