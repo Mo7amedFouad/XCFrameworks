@@ -36,6 +36,10 @@ let package = Package(
                 
                     "BraintreeVenmo.xcframework",
                 
+                    "CardinalMobile.xcframework",
+                
+                    "PPRiskMagnes.xcframework",
+                
                     "PayPalDataCollector.xcframework",
                 
                 ]
@@ -47,74 +51,86 @@ let package = Package(
         
             .binaryTarget(
                 name: "BraintreeAmericanExpress.xcframework",
-                url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.3/BraintreeAmericanExpress.xcframework.zip",
-                checksum: "cde2be4f60a844a2295d859c25205e4e68dde11374b990b0cfa0d3d8714fbf1c"           
+                url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.4/BraintreeAmericanExpress.xcframework.zip",
+                checksum: "b6bbfcf853b4a4d482fad6bd2a4ae8664f900d8cacc5aa831379daf787ac6ce5"           
             ),
         
             .binaryTarget(
                 name: "BraintreeApplePay.xcframework",
-                url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.3/BraintreeApplePay.xcframework.zip",
-                checksum: "f0ce58268c245ab30cbbbb74de9339a67544b8d068ab4db152d1193122b3781a"           
+                url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.4/BraintreeApplePay.xcframework.zip",
+                checksum: "35126e929cb30ea4790ec5c98c7178c6ed18de9a76f63c493e981f5ecacd7433"           
             ),
         
             .binaryTarget(
                 name: "BraintreeCard.xcframework",
-                url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.3/BraintreeCard.xcframework.zip",
-                checksum: "4cd5f06ef6306dc6c429c66993f6c11ec8cdc04cf82b8036e0dd1db07dfae2df"           
+                url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.4/BraintreeCard.xcframework.zip",
+                checksum: "3fd5808e6adcada704023e00214941c767474db7e22c805c5e6e90d54377663e"           
             ),
         
             .binaryTarget(
                 name: "BraintreeCore.xcframework",
-                url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.3/BraintreeCore.xcframework.zip",
-                checksum: "8013ad4665ee8d45b371eebc219ba3b1f81aaec749b74b31806ffba912c11770"           
+                url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.4/BraintreeCore.xcframework.zip",
+                checksum: "f3582c67f48b0798509dc2fefd45c4c850a95596b0d41ff9bbbfe18013aaecef"           
             ),
         
             .binaryTarget(
                 name: "BraintreeDataCollector.xcframework",
-                url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.3/BraintreeDataCollector.xcframework.zip",
-                checksum: "31d31e7c5cb7b49c63a525b06245521c583558114f4eb14f0c89b9c8cbae1aef"           
+                url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.4/BraintreeDataCollector.xcframework.zip",
+                checksum: "b2bbf68243241ca8e17827177692a608563c9ccc06b218dd226f79c3c3e7295a"           
             ),
         
             .binaryTarget(
                 name: "BraintreePayPal.xcframework",
-                url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.3/BraintreePayPal.xcframework.zip",
-                checksum: "da418cb27c1ea3663c606151d242f8ff4a4ca7e924c7f669e326b06d98be43ac"           
+                url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.4/BraintreePayPal.xcframework.zip",
+                checksum: "d2325516e903c938dbd1dd607daa70fb586fc13a5bd5fd462fda3ec4ea8f53a7"           
             ),
         
             .binaryTarget(
                 name: "BraintreePaymentFlow.xcframework",
-                url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.3/BraintreePaymentFlow.xcframework.zip",
-                checksum: "6f949e6cdd862be78a8716acd9aeef6d2a8397086db7a5f6e90de865362a8a4e"           
+                url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.4/BraintreePaymentFlow.xcframework.zip",
+                checksum: "2500f9bdea01660bcbc789182e7c72dee2c15e64b8844e4c6295a4731ac9e875"           
             ),
         
             .binaryTarget(
                 name: "BraintreeTestShared.xcframework",
-                url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.3/BraintreeTestShared.xcframework.zip",
-                checksum: "1fa93a57cd20235b8eab49250eaf0c915adb8edbb02a90cd6116755f2adb0d6e"           
+                url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.4/BraintreeTestShared.xcframework.zip",
+                checksum: "72281c9228dccfbba43496964ad4ace2f3bceb49366de37e1df3b273536550c3"           
             ),
         
             .binaryTarget(
                 name: "BraintreeThreeDSecure.xcframework",
-                url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.3/BraintreeThreeDSecure.xcframework.zip",
-                checksum: "23ce07ea1467382f4dc398528836dd113cb787b2c9bfba3692ad437f43f6a056"           
+                url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.4/BraintreeThreeDSecure.xcframework.zip",
+                checksum: "5351fb8a3427c63a9aef89e5210bac1a0cb9fbca8953a914f64cb9b046636bef"           
             ),
         
             .binaryTarget(
                 name: "BraintreeUnionPay.xcframework",
-                url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.3/BraintreeUnionPay.xcframework.zip",
-                checksum: "4b8965f01ca57197f0e7109be49f666ed3cd0d6f719bcdf87dd1a86dc81a5b9e"           
+                url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.4/BraintreeUnionPay.xcframework.zip",
+                checksum: "0d7b44249f96f34cb733e0dc65670fcb663bc6474a477560b4395cfd768a88e8"           
             ),
         
             .binaryTarget(
                 name: "BraintreeVenmo.xcframework",
-                url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.3/BraintreeVenmo.xcframework.zip",
-                checksum: "9dd92df4fe777722cd1bab2d8a1ae59db8203022cc8ba5bbfe27ba88bc5846eb"           
+                url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.4/BraintreeVenmo.xcframework.zip",
+                checksum: "0bd2be87fae0cd73098ec5a4adfbe0e4b40516d7726792400aeac537bed55a26"           
+            ),
+        
+            .binaryTarget(
+                name: "CardinalMobile.xcframework",
+                url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.4/CardinalMobile.xcframework.zip",
+                checksum: "532da7276884292e8e240432a10ee8ed165f3b27807cb32718a48112d3dae8ba"           
+            ),
+        
+            .binaryTarget(
+                name: "PPRiskMagnes.xcframework",
+                url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.4/PPRiskMagnes.xcframework.zip",
+                checksum: "2941973748549adc39b42ecdd62b68304460cf1b3d6f3da068a42ce2d72c4473"           
             ),
         
             .binaryTarget(
                 name: "PayPalDataCollector.xcframework",
-                url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.3/PayPalDataCollector.xcframework.zip",
-                checksum: "1e4c5c96f9ab682b3416546e09136c5cac600f874714bade44e1b817268da4b4"           
+                url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.4/PayPalDataCollector.xcframework.zip",
+                checksum: "e8f22eef988e2e9dbd2a7a990afc9eebc3efe09e61359c1ecf4b5fc0a16699ba"           
             ),
         
     ]
