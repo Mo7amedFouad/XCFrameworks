@@ -11,12 +11,25 @@ platform :ios do
     tag_name = options[:tag_name]
     UI.crash! "tag name cannot be empty!" if tag_name.empty?
 
+    # checkout all dependencies 
+    carthage(
+      command: 'bootstrap',
+      no_build: true
+    )
+    puts "Removing unecessary schemes for Realm "
+    # https://gist.github.com/bguidolim/46f05bea5e0e9534493010dd444d24f9
+    Dir.chdir("../Carthage/Checkouts/realm-cocoa/Realm.xcodeproj/xcshareddata/xcschemes") do
+      sh "find . ! -name \"RealmSwift.xcscheme\" ! -name \"Realm.xcscheme\" -delete"
+    end
+
     # build all dependencies using xcframework option
     carthage(
       command: 'bootstrap',
+      platform: 'iOS',
       use_xcframeworks: true,
       use_binaries: false,
-      cache_builds: true
+      cache_builds: true,
+      no_checkout: true
     )
 
     # convert all universal (FAT) frameworks to xcframeworks
@@ -56,17 +69,6 @@ platform :ios do
       }
     end
 
-    # Upload all xcframeworks to github release
-    github_release = set_github_release(
-      repository_name: "Mo7amedFouad/XCFrameworks",
-      api_token: ENV["PERSONAL_GITHUB_TOKEN"],
-      name: "Update dependencies",
-      tag_name: tag_name,
-      description: (File.read("changelog") rescue "No changelog provided"),
-      commitish: "master",
-      upload_assets: Dir.glob("../zipped/*").map{ |file| File.expand_path(file) }
-    )
-
     # Generate Package.swift
     erb(
       template: "fastlane/templates/Package.swift.erb",
@@ -81,6 +83,17 @@ platform :ios do
       path: "Package.swift"
     )
     push_to_git_remote()
+    
+    # Upload all xcframeworks to github release
+    github_release = set_github_release(
+      repository_name: "Mo7amedFouad/XCFrameworks",
+      api_token: ENV["PERSONAL_GITHUB_TOKEN"],
+      name: "Update dependencies",
+      tag_name: tag_name,
+      description: (File.read("changelog") rescue "No changelog provided"),
+      commitish: "master",
+      upload_assets: Dir.glob("../zipped/*").map{ |file| File.expand_path(file) }
+    )
   end
 
 end
