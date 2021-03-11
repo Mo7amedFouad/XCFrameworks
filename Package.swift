@@ -104,85 +104,85 @@ let package = Package(
             .binaryTarget(
                 name: "BraintreeAmericanExpress",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.1/BraintreeAmericanExpress.xcframework.zip",
-                checksum: "7f712b27b1c7d4f46faf735fc751e1e1df8e1bc8bfdf2cee8b520dfe297bad30"           
+                checksum: "16c82d8468f8198ebdfc7c9a51336fa8cf5e28848cb8a6db05b9b315e1a86168"           
             ),
         
             .binaryTarget(
                 name: "BraintreeApplePay",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.1/BraintreeApplePay.xcframework.zip",
-                checksum: "97a7a1fc0102cdf7b959714a6096e5fd9a80bb959e776f38a4074d2a57711ba7"           
+                checksum: "6867916befc3ca974e73abddd0a3ece15d4aa39d7eb7b31252ea4a7adc7741a9"           
             ),
         
             .binaryTarget(
                 name: "BraintreeCard",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.1/BraintreeCard.xcframework.zip",
-                checksum: "7cdf3ab4b61eac3e54ed5e30b368b263c30a6965bd0633a9cc3b28dbe9705037"           
+                checksum: "529dac88735733430bd897fe098e17931cd579540ebd04d7258927c5d041505a"           
             ),
         
             .binaryTarget(
                 name: "BraintreeCore",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.1/BraintreeCore.xcframework.zip",
-                checksum: "1b107f8eb0a53756489a70d1e737f151f91c79089c8d35d7c1dc8471026aaa20"           
+                checksum: "ae8b11c08bc26b5ae521f4890fc47327ff6d5a6a2fd20b3729213b37c8e57737"           
             ),
         
             .binaryTarget(
                 name: "BraintreeDataCollector",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.1/BraintreeDataCollector.xcframework.zip",
-                checksum: "ebe8179177f67f1667efc116469274f198164c9026dbcdacfb966430528eb87e"           
+                checksum: "5193b28a74730f44dfe9803ab9603c0e652e57960eedd6bbc15f10eaebade493"           
             ),
         
             .binaryTarget(
                 name: "BraintreePayPal",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.1/BraintreePayPal.xcframework.zip",
-                checksum: "7f06832fc21ab46a0c13d10b0042a81a5286a841a23b29bfc0bbee17e7debeb5"           
+                checksum: "9a17b47e6186fbe8d3c81c9a4d593b60bc5c0cb18ef0fcb8593544a7df3104b0"           
             ),
         
             .binaryTarget(
                 name: "BraintreePaymentFlow",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.1/BraintreePaymentFlow.xcframework.zip",
-                checksum: "1aa2f8a12a6c2032b19ec2aba82ff389969b5facad37b7a5991db8024457d7c9"           
+                checksum: "4b84ca929782b2769463892e5f65261aa5623a4ce39ca7d3383797c95ee5be00"           
             ),
         
             .binaryTarget(
                 name: "BraintreeTestShared",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.1/BraintreeTestShared.xcframework.zip",
-                checksum: "4246a141987834e973df9f78a8e69b6a2c2368528951bf5ead2fa4e063ebdd13"           
+                checksum: "f9e7af4b297e6f268ad009c02bef3786e4e4a35c84d4864d1e452252b523e9f0"           
             ),
         
             .binaryTarget(
                 name: "BraintreeThreeDSecure",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.1/BraintreeThreeDSecure.xcframework.zip",
-                checksum: "a9037fe5e0382ab667c2164171f9f8c53c3a2fba93538ed228df619147bd4bd9"           
+                checksum: "8e23c52857ae77e8f778fdad672d8c4ab485f89ef6409650ebc0f9c2b1f26b0c"           
             ),
         
             .binaryTarget(
                 name: "BraintreeUnionPay",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.1/BraintreeUnionPay.xcframework.zip",
-                checksum: "91233317b07094c9f46d7e7a565e2655682fe65ca93e651e6897787a605fc195"           
+                checksum: "d4d18a53e02e1693df308fd36d8705a6e6d7afc4e6e53ea726963efd2f7ac72e"           
             ),
         
             .binaryTarget(
                 name: "BraintreeVenmo",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.1/BraintreeVenmo.xcframework.zip",
-                checksum: "1e806cea54afac71c05e2b5df7033ccff133fd5e46044fd5d2f85498a4db92d0"           
+                checksum: "aa8a4cdc18813d85171a819297ccbffaa6c50ad81091e5ce7c6e03a8bc36e02d"           
             ),
         
             .binaryTarget(
                 name: "CardinalMobile",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.1/CardinalMobile.xcframework.zip",
-                checksum: "52ac35f04911343bf1c8df1ae1430bc68989158d04ba89f7e0cb78a1c9b57b74"           
+                checksum: "4ba3bbc420e519f8dd316898ff29063b66e1b7ece61d0e899e5fe1eb4a25a8a6"           
             ),
         
             .binaryTarget(
                 name: "PPRiskMagnes",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.1/PPRiskMagnes.xcframework.zip",
-                checksum: "e4f3a084af9e384b2d1803907afd280bb80306b87e94cd6fbf385100ac6c036d"           
+                checksum: "384826478ffd91367289b263b1ef968ed323a72558773dea52feacbee0238b42"           
             ),
         
             .binaryTarget(
                 name: "PayPalDataCollector",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.1/PayPalDataCollector.xcframework.zip",
-                checksum: "564546510868c257a320da92596cc1db2193e1387242f51d4024206fe4bc1b78"           
+                checksum: "e5c9b68e73793cdafab0b7147b40c06e15fcea0a7d5d2eb17f137d1dcdf5e4af"           
             ),
         
             .binaryTarget(
