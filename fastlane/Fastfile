@@ -16,8 +16,7 @@ platform :ios do
       command: 'bootstrap',
       use_xcframeworks: true,
       use_binaries: false,
-      cache_builds: true,
-      use_ssh: true
+      cache_builds: true
     )
 
     # zip all xcframework 
