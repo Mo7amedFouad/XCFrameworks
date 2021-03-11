@@ -63,7 +63,8 @@ platform :ios do
     )
     # Commit to master
     git_commit(
-      message: "Update dependencies #{tag_name}"
+      message: "Update dependencies #{tag_name}",
+      path: "Package.swift"
     )
     push_to_git_remote()
   end
