@@ -1,4 +1,4 @@
-name: Swift
+name: Generate artifacts
 
 on:
   workflow_dispatch:
@@ -18,4 +18,4 @@ jobs:
         export LANG=en_US.UTF-8
 
         # Trigger fastlane
-        fastlane generate tag_name: ${{github.event.inputs.tagName }} --verbose
+        fastlane generate tag_name:${{ github.event.inputs.tagName }} --verbose
