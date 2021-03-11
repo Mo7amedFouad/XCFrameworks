@@ -1,1 +1,3 @@
 github "braintree/braintree_ios"
+github "realm/realm-cocoa"
+github "SimonFairbairn/SwiftyMarkdown"
