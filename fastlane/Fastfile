@@ -50,7 +50,7 @@ platform :ios do
       )
       checksum = Digest::SHA256.hexdigest File.read "../#{zip_path}"
       xcframeworks << {
-        :name => xcframework_name, 
+        :name => File.basename(xcframework_name,File.extname(xcframework_name)), 
         :checksum => "#{checksum}",
         :url => "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/#{tag_name}/#{xcframework_name}.zip"
       }
