@@ -19,6 +19,20 @@ platform :ios do
       cache_builds: true
     )
 
+    # convert all universal (FAT) frameworks to xcframeworks
+    framework_names = []
+    Dir.chdir("..") do
+      Find.find('Carthage/Build/iOS') do |path|
+        framework_names << File.basename(path,File.extname(path)) if path =~ /.*\.framework$/
+      end
+    end
+    framework_names.each do |framework_name|
+      Dir.chdir("..") do
+        sh "./convert.sh #{framework_name}"
+      end
+    end
+
+
     # zip all xcframework 
     xcframeworks = [] 
     xcframework_paths = []
