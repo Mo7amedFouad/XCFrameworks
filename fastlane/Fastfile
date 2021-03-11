@@ -10,18 +10,7 @@ platform :ios do
   lane :generate do |options|
     tag_name = options[:tag_name]
     UI.crash! "tag name cannot be empty!" if tag_name.empty?
-
-    # checkout all dependencies 
-    carthage(
-      command: 'bootstrap',
-      no_build: true
-    )
-    puts "Removing unecessary schemes for Realm "
-    # https://gist.github.com/bguidolim/46f05bea5e0e9534493010dd444d24f9
-    Dir.chdir("../Carthage/Checkouts/realm-cocoa/Realm.xcodeproj/xcshareddata/xcschemes") do
-      sh "find . ! -name \"RealmSwift.xcscheme\" ! -name \"Realm.xcscheme\" -delete"
-    end
-
+    
     # build all dependencies using xcframework option
     carthage(
       command: 'bootstrap',
