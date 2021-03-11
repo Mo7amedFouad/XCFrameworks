@@ -45,7 +45,7 @@ platform :ios do
     # Upload all xcframeworks to github release
     github_release = set_github_release(
       repository_name: "Mo7amedFouad/XCFrameworks",
-      api_token: ENV["GITHUB_TOKEN"],
+      api_bearer: ENV["GITHUB_TOKEN"],
       name: "Update dependencies",
       tag_name: tag_name,
       description: (File.read("changelog") rescue "No changelog provided"),
