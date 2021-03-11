@@ -16,6 +16,5 @@ jobs:
       run: |
         # Fastlane requires the UTF-8 encoding
         export LANG=en_US.UTF-8
-        bundle install
         # Trigger fastlane
-        bundle exec fastlane generate tag_name:${{ github.event.inputs.tagName }} --verbose
+        fastlane generate tag_name:${{ github.event.inputs.tagName }} --verbose
