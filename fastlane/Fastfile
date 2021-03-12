@@ -11,10 +11,11 @@ platform :ios do
     tag_name = options[:tag_name]
     UI.crash! "tag name cannot be empty!" if tag_name.empty?
     # checkout all dependencies 
-    Dir.chdir("..") do
-      sh "carthage checkout"
-    end
-    
+    carthage(
+      command: 'update',
+      no_build: true
+    )
+        
     puts "Removing unecessary schemes for Realm "
     # https://gist.github.com/bguidolim/46f05bea5e0e9534493010dd444d24f9
     Dir.chdir("../Carthage/Checkouts/realm-cocoa/Realm.xcodeproj/xcshareddata/xcschemes") do
@@ -23,12 +24,11 @@ platform :ios do
 
     # build all dependencies using xcframework option
     carthage(
-      command: 'bootstrap',
+      command: 'build',
       platform: 'iOS',
       use_xcframeworks: true,
       use_binaries: false,
-      cache_builds: true,
-      no_checkout: true
+      cache_builds: true
     )
 
     # convert all universal (FAT) frameworks to xcframeworks
