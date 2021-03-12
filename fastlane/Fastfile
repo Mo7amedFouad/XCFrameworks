@@ -11,7 +11,9 @@ platform :ios do
     tag_name = options[:tag_name]
     UI.crash! "tag name cannot be empty!" if tag_name.empty?
     # checkout all dependencies 
-    sh "carthage checkout"
+    Dir.chdir("..") do
+      sh "carthage checkout"
+    end
     
     puts "Removing unecessary schemes for Realm "
     # https://gist.github.com/bguidolim/46f05bea5e0e9534493010dd444d24f9
