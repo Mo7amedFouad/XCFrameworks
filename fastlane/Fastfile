@@ -3,22 +3,21 @@ Encoding.default_external = Encoding::UTF_8
 default_platform :ios
 
 platform :ios do
-  before_all do
-    xcversion(version: "12.4")
-  end
+  before_all { xcversion(version: '12.5') }
 
   lane :generate do |options|
     tag_name = options[:tag_name]
-    UI.crash! "tag name cannot be empty!" if tag_name.empty?
-    # checkout all dependencies 
-    carthage(
-      command: 'update',
-      no_build: true
-    )
-        
-    puts "Removing unecessary schemes for Realm "
+    UI.crash! 'tag name cannot be empty!' if tag_name.empty?
+
+    # checkout all dependencies
+    carthage(command: 'update', no_build: true)
+
+    puts 'Removing unecessary schemes for Realm '
+
     # https://gist.github.com/bguidolim/46f05bea5e0e9534493010dd444d24f9
-    Dir.chdir("../Carthage/Checkouts/realm-cocoa/Realm.xcodeproj/xcshareddata/xcschemes") do
+    Dir.chdir(
+      '../Carthage/Checkouts/realm-cocoa/Realm.xcodeproj/xcshareddata/xcschemes',
+    ) do
       sh "find . ! -name \"RealmSwift.xcscheme\" ! -name \"Realm.xcscheme\" -delete"
     end
 
@@ -28,27 +27,25 @@ platform :ios do
       platform: 'iOS',
       use_xcframeworks: true,
       use_binaries: false,
-      cache_builds: true
     )
 
     # convert all universal (FAT) frameworks to xcframeworks
     framework_names = []
-    Dir.chdir("..") do
+    Dir.chdir('..') do
       Find.find('Carthage/Build/iOS') do |path|
-        framework_names << File.basename(path,File.extname(path)) if path =~ /.*\.framework$/
+        if path =~ /.*\.framework$/
+          framework_names << File.basename(path, File.extname(path))
+        end
       end
     end
     framework_names.each do |framework_name|
-      Dir.chdir("..") do
-        sh "./convert.sh #{framework_name}"
-      end
+      Dir.chdir('..') { sh "./convert.sh #{framework_name}" }
     end
 
-
-    # zip all xcframework 
-    xcframeworks = [] 
+    # zip all xcframework
+    xcframeworks = []
     xcframework_paths = []
-    Dir.chdir("..") do
+    Dir.chdir('..') do
       Find.find('Carthage/Build/') do |path|
         xcframework_paths << path if path =~ /.*\.xcframework$/
       end
@@ -56,43 +53,50 @@ platform :ios do
     xcframework_paths.each do |xcframework_path|
       xcframework_name = xcframework_path.split('/').last
       zip_path = "zipped/#{xcframework_name}.zip"
-      zip(
-        path: xcframework_path,
-        output_path: zip_path
-      )
+      zip(path: xcframework_path, output_path: zip_path)
       checksum = Digest::SHA256.hexdigest File.read "../#{zip_path}"
       xcframeworks << {
-        :name => File.basename(xcframework_name,File.extname(xcframework_name)), 
-        :checksum => "#{checksum}",
-        :url => "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/#{tag_name}/#{xcframework_name}.zip"
+        name: File.basename(xcframework_name, File.extname(xcframework_name)),
+        checksum: "#{checksum}",
+        url:
+          "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/#{tag_name}/#{xcframework_name}.zip",
       }
     end
 
     # Generate Package.swift
     erb(
-      template: "fastlane/templates/Package.swift.erb",
-      destination: "Package.swift",
+      template: 'fastlane/templates/Package.swift.erb',
+      destination: 'Package.swift',
       placeholders: {
-        :xcframeworks => xcframeworks      
+        xcframeworks: xcframeworks,
       }
     )
+
     # Commit to master
     git_commit(
       message: "Update dependencies #{tag_name}",
-      path: "Package.swift"
+      path: 'Package.swift'
     )
-    push_to_git_remote()
-    
-    # Upload all xcframeworks to github release
-    github_release = set_github_release(
-      repository_name: "Mo7amedFouad/XCFrameworks",
-      api_token: ENV["PERSONAL_GITHUB_TOKEN"],
-      name: "Update dependencies",
-      tag_name: tag_name,
-      description: (File.read("changelog") rescue "No changelog provided"),
-      commitish: "master",
-      upload_assets: Dir.glob("../zipped/*").map{ |file| File.expand_path(file) }
-    )
-  end
+    push_to_git_remote
 
+    # Upload all xcframeworks to github release
+    github_release =
+      set_github_release(
+        repository_name: 'Mo7amedFouad/XCFrameworks',
+        api_token: ENV['PERSONAL_GITHUB_TOKEN'],
+        name: 'Update dependencies',
+        tag_name: tag_name,
+        description:
+          (
+            begin
+              File.read('changelog')
+            rescue StandardError
+              'No changelog provided'
+            end
+          ),
+        commitish: 'master',
+        upload_assets:
+          Dir.glob('../zipped/*').map { |file| File.expand_path(file) },
+      )
+  end
 end
