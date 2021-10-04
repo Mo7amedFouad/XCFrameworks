@@ -36,7 +36,7 @@ platform :ios do
 
     # build all dependencies using xcframework option
     Dir.chdir('..') do
-      sh './carthage.sh build --platform iOS --use-xcframeworks --no-use-binaries --cache-builds'
+      sh './carthage.sh build --platform iOS --use-xcframeworks --cache-builds'
     end
 
     # convert all universal (FAT) frameworks to xcframeworks
@@ -89,7 +89,7 @@ platform :ios do
               'No changelog provided'
             end
           ),
-        commitish: 'master',
+        commitish: 'no-binaries',
         upload_assets:
           Dir.glob('../zipped/*').map { |file| File.expand_path(file) },
       )
