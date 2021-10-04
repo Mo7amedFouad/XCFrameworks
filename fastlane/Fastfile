@@ -56,7 +56,7 @@ platform :ios do
     )
 
     # zip all xcframework
-    xcframeworks = zip_xcframeworks(output_directory_path: "zipped")
+    xcframeworks = zip_xcframeworks(output_directory_path: "zipped", tag_name: tag_name)
 
     # Generate Package.swift
     erb(
@@ -100,7 +100,7 @@ platform :ios do
   # +output_directory_path+:: STRING describing the directory path to the output
   # Returns:
   # +xcframeworks+:: array of {name: STRING, path: STRING} objects describing successfully archived packages
-  def zip_xcframeworks(output_directory_path: :output_directory_path)
+  def zip_xcframeworks(output_directory_path: :output_directory_path, tag_name: tag_name)
     UI.message "Archiving xcframeworks to #{output_directory_path}"
     xcframeworks = []
     xcframework_paths = []
