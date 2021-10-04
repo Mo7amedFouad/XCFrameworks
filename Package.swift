@@ -219,241 +219,241 @@ let package = Package(
             .binaryTarget(
                 name: "PayPalDataCollector",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/PayPalDataCollector.zip",
-                checksum: "0c584edd4af72455aa0866ca3f91416aed25c33c4372ed709d7cccdf8eb72f4f"           
+                checksum: "1d7c50beea280965dd64b86b1b6cc3c71de3fbf3edf7c790d4681ff7cb1e56fb"           
             ),
         
             .binaryTarget(
                 name: "ReactiveSwift",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/ReactiveSwift.zip",
-                checksum: "a503fd0b3a425986ba70e09d204e80422073659ca5902ec00bdba37c6d119a94"           
+                checksum: "06169591c1b4bfdb8ed9520fd2ea35d66e548f8d4953f2e122f03a8b76bdcfcf"           
             ),
         
             .binaryTarget(
                 name: "BraintreePayPal",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/BraintreePayPal.zip",
-                checksum: "536aa267c6bd5df136acac7fac66dbdc8764ae8aeba89d724431464ac58fce89"           
+                checksum: "5132ef72e5e11911df5f07dc5c6c0f55072fd77eae032cdc520fe0508fdc221c"           
             ),
         
             .binaryTarget(
                 name: "Kronos",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/Kronos.zip",
-                checksum: "cf9f1d0dd80361885f481da10e2268c1dbd7b14650187661115d0c1ac36e701f"           
+                checksum: "c4de69792ae653378f19de47d7a49c3373010cafecbc8d11b18b96e30d01fb89"           
             ),
         
             .binaryTarget(
                 name: "nanopb",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/nanopb.zip",
-                checksum: "83182f516a98d36713e4f084b5cd082bbc4ddd7fb7cf6b6127aacab406ffc11f"           
+                checksum: "8b707eee3b8fc767338fcf3432f880f41110394d93d68cb76df5d31b2f2dfb41"           
             ),
         
             .binaryTarget(
                 name: "PPRiskMagnes",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/PPRiskMagnes.zip",
-                checksum: "3542c00e62cd4cf38a733f80736720d7a7a34d7a197104c102f88727fb2d49ed"           
+                checksum: "2da7716edce19b0a1a558f0d6e1445558a77124ddf779c175195c778faa8c5a8"           
             ),
         
             .binaryTarget(
                 name: "geos",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/geos.zip",
-                checksum: "23a43677c3d5efbc339fa2d1bd5b2dce107a1b3d4731a0c55820794fdb3fb599"           
+                checksum: "402baec581616a9c54ffb62bc4d66e8791eaf1b6c318ef4cf8e5017f70a362ce"           
             ),
         
             .binaryTarget(
                 name: "BraintreeApplePay",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/BraintreeApplePay.zip",
-                checksum: "2796a80463ebdd8ad3504dd4cc6c2fc2eafbd79c429528c94a2a7a2eaafd68b6"           
+                checksum: "18b7666a7b97091b6cd289b0389c54ab8638d00b655ddea2776dbc7ac8b44d51"           
             ),
         
             .binaryTarget(
                 name: "SwiftyMarkdown",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/SwiftyMarkdown.zip",
-                checksum: "4debd2499ccf0eab27a30a69f7a0e1ce595449e60d151154a7f382dc9edde4ba"           
+                checksum: "a1fe3f6fdcc5da9059a21830b0f088935df0dd24420575f0c57ddd330b6f42db"           
             ),
         
             .binaryTarget(
                 name: "CardinalMobile",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/CardinalMobile.zip",
-                checksum: "cd28bfcafc51826e1da135e7cefd9a27692381c2d50c13e04728fd7c0122f0d5"           
+                checksum: "621bf5f89bf1c6367da7887559569fcab008173ea5506614771ce073fe4fc9c1"           
             ),
         
             .binaryTarget(
                 name: "RealmSwift",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/RealmSwift.zip",
-                checksum: "1f0242ca9cb6291589d9b08798ac0723fc419e78a24b2b60bb1f7ee788f45432"           
+                checksum: "8fd22935a5930ca48f516c79ddc7efbc6d47ee71b6888ecf4e0acd770e26805c"           
             ),
         
             .binaryTarget(
                 name: "PromisesObjC",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/PromisesObjC.zip",
-                checksum: "a6d48d6b7f3e19fd6a67ae250be9b2f25fa513ac88e18d64e4f9c8466df75aae"           
+                checksum: "9751b8436ae23f78c466eaacef606f2962a485d68f5f72c5c252cad81d29fcbf"           
             ),
         
             .binaryTarget(
                 name: "BraintreeCard",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/BraintreeCard.zip",
-                checksum: "3565f7ece15e6e092fde958b375f8fb260abbe2b76836ddd6bea80fdd047db6f"           
+                checksum: "491d07b3bca039f6e5889d1d81db767b58070ffa3d5e394ee080a8c53b98d795"           
             ),
         
             .binaryTarget(
                 name: "FirebaseAnalytics",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/FirebaseAnalytics.zip",
-                checksum: "0f37dfa5cd726ed1a30a6cbb015a154762660c36a278efc1dcab50e4f211814b"           
+                checksum: "d41d73e0c784879774d69aec9a8fe0cf7507f588007ca42d58db478be6fc9991"           
             ),
         
             .binaryTarget(
                 name: "BraintreeUnionPay",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/BraintreeUnionPay.zip",
-                checksum: "4da14a3ad90acdd2a91f9a82a4ca66815ce60204f7eaf3dce66ed785cc3e1a3c"           
+                checksum: "31f30afab7a3ae41f3119fe8ee41b85a287c9124ba343a45f4e5cb00530e88c7"           
             ),
         
             .binaryTarget(
                 name: "BraintreeVenmo",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/BraintreeVenmo.zip",
-                checksum: "53ed88ffd7a5538685d453f78139ca905d14c19cab81bbb2f0c131b659e004dd"           
+                checksum: "190a510748cd225cadf6a4e94a8d9c73a0e1958aeb82d8b03eefae16e82e72fb"           
             ),
         
             .binaryTarget(
                 name: "GEOSwift",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/GEOSwift.zip",
-                checksum: "e0fa2165ae73d3d201e35801bfd3e2b4f9b974b4843462de994d9c1e86564626"           
+                checksum: "19b14142a2e410e4f560cd65d0075954249307045f56974919a09ee9ba384b7c"           
             ),
         
             .binaryTarget(
                 name: "FirebaseDatabase",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/FirebaseDatabase.zip",
-                checksum: "a78070e316f7211bd1ffeffc75bbbd549f49f758a8ecf50b71ac23bb96a8dd57"           
+                checksum: "f9b0072f0b10605f167eeb832e6e8da84937cfcb5139f9060e92717d8201b411"           
             ),
         
             .binaryTarget(
                 name: "Amplitude",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/Amplitude.zip",
-                checksum: "766150136752fdaf47102245277505da2bebd8eee9d0c019ab20b7b0dcd3330c"           
+                checksum: "0771a0c5970e5d1f2f13dd4a9b251c8454dade1c2bf269aebe8949c12e12e979"           
             ),
         
             .binaryTarget(
                 name: "BraintreeTestShared",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/BraintreeTestShared.zip",
-                checksum: "574f59262fc61287552a92502a912ef76022851f2ffa4414c97c94da2e2f8a53"           
+                checksum: "579d055f19fbe6cedc53ff215b8787208ee37b7a6570bd4e42d4d8a14c8b7a88"           
             ),
         
             .binaryTarget(
                 name: "leveldb-library",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/leveldb-library.zip",
-                checksum: "ea6226905aa659d1f892669f491104fbdb368b0a1a4fe7fba0a27e159f3db43f"           
+                checksum: "c383013fc03ebf7f3165309892dadd8b31400dc0b2fb24c72ec356541d408814"           
             ),
         
             .binaryTarget(
                 name: "FirebaseCoreDiagnostics",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/FirebaseCoreDiagnostics.zip",
-                checksum: "a3acca0310be5b787d9e0c997ae8990851b0bf2a76105f8cd8beab36d5f69057"           
+                checksum: "617e288f7b4bbe7254564936bf57edd2fa20f1226fdb9467215550acc3ee0b6b"           
             ),
         
             .binaryTarget(
                 name: "Polyline",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/Polyline.zip",
-                checksum: "38fb39e14bad593ee5588a382480329decbe507f989149c66d4951d1221c1e19"           
+                checksum: "1827e41542ceea92be70b6cb4eeb7b740a4f766b272e20c8c20b52b9a889aca1"           
             ),
         
             .binaryTarget(
                 name: "BraintreeDataCollector",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/BraintreeDataCollector.zip",
-                checksum: "df600e89adeaf43bc03ab70bfebad9f57c70147db563e8dfd6befe251fe3338b"           
+                checksum: "838e77525edb083d03d7ed152ea48f0808c893e66e080705273a22fe1481ba60"           
             ),
         
             .binaryTarget(
                 name: "NewRelic",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/NewRelic.zip",
-                checksum: "8142ace0577c66547436f3e9095d411645f162ceb34981b906f2a68d62971027"           
+                checksum: "9dc1432c2d22126ae668f754e66841fcf291390891d7ac5b3f86ad92fac744f3"           
             ),
         
             .binaryTarget(
                 name: "SnapshotTesting",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/SnapshotTesting.zip",
-                checksum: "0c263f68a4c7e84f579de17985400646e2025ef2ee0adb4d5914d529d6c26daf"           
+                checksum: "efd55da21e886d6da0347b5c51c1984f2494cac088b5e5e98488a194f8581e84"           
             ),
         
             .binaryTarget(
                 name: "FirebaseInstallations",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/FirebaseInstallations.zip",
-                checksum: "0967fc37f9e48b46621d9356ab2f38448ccd7769880f301623ec1ce21760dd54"           
+                checksum: "5cec648022436fac44b11198e691f208e5effdfde1b3a2fc29c604e648f42ad3"           
             ),
         
             .binaryTarget(
                 name: "Realm",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/Realm.zip",
-                checksum: "b91021af0b8f005a092d8279be2114bfbdae549561e695963e4e1e70d4d22589"           
+                checksum: "f9776a6ce8c878091d6e6f60c3a05bbcab29c7269b2cb148effd266ca620e89d"           
             ),
         
             .binaryTarget(
                 name: "ReactiveMapKit",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/ReactiveMapKit.zip",
-                checksum: "dcaf47f1f885a68462e8e169d8f19ed957b863d67867dacb5a14796c711c37c5"           
+                checksum: "150ad0ec0424ab2722102fb976a628861119d4c245caaa40f6fa6bc14ef84106"           
             ),
         
             .binaryTarget(
                 name: "FirebaseCore",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/FirebaseCore.zip",
-                checksum: "10bd0615d2e5f360ccdf2adad9cbf32ec4d26372ac378b9643bd4143cdba43a4"           
+                checksum: "c473d8d7a0fcc21f1d288a94d61ad6810e2c189b9069e3d15c09ba0dd476206e"           
             ),
         
             .binaryTarget(
                 name: "BraintreeThreeDSecure",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/BraintreeThreeDSecure.zip",
-                checksum: "b0158075920187f87107490317817a6e092085b3c9aba82b8b402ad697328b5e"           
+                checksum: "0780c6abb953e34b15428a2dfcdf19ff838a050a88c2945846603d6ae427ead6"           
             ),
         
             .binaryTarget(
                 name: "Firebase",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/Firebase.zip",
-                checksum: "2f1279680a9145fc12b54b6a667860e9955f18360de2ab547c891df7eced9555"           
+                checksum: "34c2a5d3581208c495227d8de0e11790ca6ec22283011faab5c1970fca9f9491"           
             ),
         
             .binaryTarget(
                 name: "BraintreePaymentFlow",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/BraintreePaymentFlow.zip",
-                checksum: "0fea4f960962a9145df13db91ba742d6b1d480fc64631e9fdc6d15eeb890b0dc"           
+                checksum: "9417fcddaf7daf7a1b62932b263b699c43449a9d5127df2a731c6284025b2942"           
             ),
         
             .binaryTarget(
                 name: "BraintreeAmericanExpress",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/BraintreeAmericanExpress.zip",
-                checksum: "29f1f4f4491103528d1ebe06af20b8268e9d6df1d8f9c1801eb5749395244601"           
+                checksum: "96b020e71a8e00f7a831c2f050d86e6f6286ac170a665cd782afe992fe21f9fa"           
             ),
         
             .binaryTarget(
                 name: "GoogleDataTransport",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/GoogleDataTransport.zip",
-                checksum: "4000e3f7cb3dcaa28eb3cf1c2eb4ded8663ca78ed28e79a64c0aa893dcf4332b"           
+                checksum: "2ae822d0cd71d6e3c310dccaae798400d7efd5beffbc9cec9581365b7c1f8653"           
             ),
         
             .binaryTarget(
                 name: "Interpolate",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/Interpolate.zip",
-                checksum: "664d65711c3579015c118ef96d629cbf6cb8cdd8f4b492d0441f64d100fbdc54"           
+                checksum: "8869da5e99600dac93e5906d0b4b457277d1110c28aaea037bc3807228c56c99"           
             ),
         
             .binaryTarget(
                 name: "GoogleAppMeasurement",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/GoogleAppMeasurement.zip",
-                checksum: "aeab4f5cf98b1c57b25ad7868098b1bc0b50ab50a098776fde911fa8af11fffb"           
+                checksum: "2bc073428ce574948cbd95184d89119ff6b961aee84bdabc50ffb83079a45e9c"           
             ),
         
             .binaryTarget(
                 name: "BraintreeCore",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/BraintreeCore.zip",
-                checksum: "0a39902c76804f7a35d8d8db6cba2e1eb2491a08517fd7085689f14c8179fc0d"           
+                checksum: "95e9dbb7699a2e25040cd246a8e06b2c96490619e8c316f692b49b7ab31b0cda"           
             ),
         
             .binaryTarget(
                 name: "ReactiveCocoa",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/ReactiveCocoa.zip",
-                checksum: "77792a15aa68a3fbd856c695c78145be037668d389bf5cd8c78a8a1eca6a17d3"           
+                checksum: "1b4a5d4d6f7e4fc5a6947661cc41cf1cfca0781c0604a3af02f708f218724874"           
             ),
         
             .binaryTarget(
                 name: "GoogleUtilities",
                 url: "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/0.0.7/GoogleUtilities.zip",
-                checksum: "d3ea2910749dbd2eeb5f6d438790ff0de386fe0c4cdd2ba073245e2fbd0b9bc4"           
+                checksum: "faa0ed8bc7ae0b0ae6aafbd27831ff94bff891c9894e0613a503274ef1be6f20"           
             ),
         
     ]
