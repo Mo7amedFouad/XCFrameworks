@@ -3,11 +3,24 @@ Encoding.default_external = Encoding::UTF_8
 default_platform :ios
 
 platform :ios do
-  before_all { xcversion(version: '12.5') }
+  before_all { xcversion(version: '13.0') }
 
   lane :generate do |options|
     tag_name = options[:tag_name]
     UI.crash! 'tag name cannot be empty!' if tag_name.empty?
+
+    ADDITIONAL_XCFRAMEWORK_DOWNLOADS = [
+      {name: 'NewRelic', url: 'https://download.newrelic.com/ios_agent/NewRelic_XCFramework_Agent_7.3.1.zip'}
+    ]
+    ADDITIONAL_LICENSE_DOWNLOADS = [
+      {name: 'Firebase', url: 'https://raw.githubusercontent.com/firebase/firebase-ios-sdk/master/LICENSE'}
+    ]
+
+    # clean carthage build folder
+    FileUtils.rm_rf("../Carthage/.", secure: true)
+
+    # clean zip folder
+    FileUtils.rm_rf("../zipped/.", secure: true)
 
     # checkout all dependencies
     carthage(command: 'update', no_build: true)
@@ -22,46 +35,28 @@ platform :ios do
     end
 
     # build all dependencies using xcframework option
-    carthage(
-      command: 'build',
-      platform: 'iOS',
-      use_xcframeworks: true,
-      use_binaries: false,
-    )
+    Dir.chdir('..') do
+      sh './carthage.sh build --platform iOS --use-xcframeworks --no-use-binaries --cache-builds'
+    end
 
     # convert all universal (FAT) frameworks to xcframeworks
-    framework_names = []
-    Dir.chdir('..') do
-      Find.find('Carthage/Build/iOS') do |path|
-        if path =~ /.*\.framework$/
-          framework_names << File.basename(path, File.extname(path))
-        end
-      end
-    end
-    framework_names.each do |framework_name|
-      Dir.chdir('..') { sh "./convert.sh #{framework_name}" }
-    end
+    convert_universal_frameworks_to_xcframeworks
+    
+    # download external xcframeworks
+    frameworks_items = ADDITIONAL_XCFRAMEWORK_DOWNLOADS.flat_map { |additional_framework_item|
+      download_xcframework(
+        name: additional_framework_item[:name], 
+        url: additional_framework_item[:url]
+      )
+    }
+    # generate carthage_licenses.md containing aggregated licenses
+    generate_carthage_licenses(
+      include_framework_items: frameworks_items,
+      download_additional_licenses: ADDITIONAL_LICENSE_DOWNLOADS
+    )
 
     # zip all xcframework
-    xcframeworks = []
-    xcframework_paths = []
-    Dir.chdir('..') do
-      Find.find('Carthage/Build/') do |path|
-        xcframework_paths << path if path =~ /.*\.xcframework$/
-      end
-    end
-    xcframework_paths.each do |xcframework_path|
-      xcframework_name = xcframework_path.split('/').last
-      zip_path = "zipped/#{xcframework_name}.zip"
-      zip(path: xcframework_path, output_path: zip_path)
-      checksum = Digest::SHA256.hexdigest File.read "../#{zip_path}"
-      xcframeworks << {
-        name: File.basename(xcframework_name, File.extname(xcframework_name)),
-        checksum: "#{checksum}",
-        url:
-          "https://github.com/Mo7amedFouad/XCFrameworks/releases/download/#{tag_name}/#{xcframework_name}.zip",
-      }
-    end
+    xcframeworks = zip_xcframeworks(output_directory_path: "zipped")
 
     # Generate Package.swift
     erb(
@@ -99,4 +94,193 @@ platform :ios do
           Dir.glob('../zipped/*').map { |file| File.expand_path(file) },
       )
   end
+
+  # Aggregates xcframeworks from Carthage build folder into a single .zip archive and cleans up Carthage/Build directory
+  # Params:
+  # +output_directory_path+:: STRING describing the directory path to the output
+  # Returns:
+  # +xcframeworks+:: array of {name: STRING, path: STRING} objects describing successfully archived packages
+  def zip_xcframeworks(output_directory_path: :output_directory_path)
+    UI.message "Archiving xcframeworks to #{output_directory_path}"
+    xcframeworks = []
+    xcframework_paths = []
+    Dir.chdir('..') do
+      Dir.glob('Carthage/Build/*').each do |path|
+        if path =~ /.*\.xcframework$/
+          xcframework_paths << path 
+        else
+          begin
+            FileUtils.rm(path) # Deletes all files that doesn't match *.xcframework
+          rescue Exception => e
+            UI.important "⚠️  Couldn't clean up build folder at #{path} - #{e.message}"
+          end
+        end
+      end
+    end
+
+    xcframework_paths.each do |xcframework_path|
+      xcframework = xcframework_path.split('/').last # braintree.xcframework
+      xcframework_name = File.basename(xcframework, File.extname(xcframework)) # braintree
+      zip_path = "#{output_directory_path}/#{xcframework_name}.zip"
+      zip(path: xcframework_path, output_path: zip_path)
+      checksum = Digest::SHA256.hexdigest File.read "../#{zip_path}"
+      xcframeworks << {
+        name: xcframework_name,
+        checksum: "#{checksum}",
+        url:"https://github.com/Mo7amedFouad/XCFrameworks/releases/download/#{tag_name}/#{xcframework_name}.zip",
+      }
+    end
+
+    xcframeworks
+  end
+
+  # Converts all universal (FAT) frameworks in Carthage/Build/iOS directory to xcframeworks
+  def convert_universal_frameworks_to_xcframeworks()
+    framework_names = []
+    Dir.chdir('..') do
+      Find.find('Carthage/Build/iOS') do |path|
+        if path =~ /.*\.framework$/
+          framework_names << File.basename(path, File.extname(path))
+        end
+      end
+    end
+    framework_names.each do |framework_name|
+      Dir.chdir('..') { sh "./convert.sh #{framework_name}" }
+    end
+  end
+
+  # Collects license files from various sources and writes their contents to one single license file for all carthage packages.
+  # Licenses from carthage packages in checkouts are included by default, other sources are optional.
+  # Params:
+  # +include_framework_items+:: optional array of {:name => STRING, :path => STRING} objects each describing a directory with a license file for the given framework name
+  # +download_additional_licenses+:: optional array of {:name => STRING, :url => STRING} objects each describing a url with a license file for the given framework name
+  private_lane :generate_carthage_licenses do |options|
+    OUTPUT_FILE_NAME = 'carthage_licenses.md'
+    carthage_path = '../Carthage/'
+    output_file_path = carthage_path + OUTPUT_FILE_NAME
+
+    carthage_licenses = collect_licenses_from_checkouts(carthage_path: carthage_path)
+    additional_local_licenses = options.has_key?(:include_framework_items) ? collect_local_licenses(framework_items: options[:include_framework_items]) : []
+    additional_download_licenses = options.has_key?(:download_additional_licenses) ? download_additional_licenses(download_items: options[:download_additional_licenses]) : []
+
+    write_licenses_to_file(
+      output_file_path: output_file_path,
+      licenses: (carthage_licenses + additional_local_licenses + additional_download_licenses)
+    )
+  end
+  
+  # Attempts to find a license file for each dependency listed in the cartfile
+  # Searches in Carthage/Checkouts folder. Excludes binary dependencies.
+  # Params:
+  # +carthage_path+:: STRING describing the directory path to the Carthage folder
+  # Returns:
+  # +carthage_licenses+:: array of {:name => STRING, :body => STRING} objects which were aggregated from checkouts
+  def collect_licenses_from_checkouts(carthage_path: :carthage_path)
+    UI.message "Collecting carthage licenses from checkouts"
+    File.readlines("../Cartfile").delete_if { |line|
+      # exclude binary dependencies since those don't include license files; licenses can be downloaded via download_additional_licenses for these
+      line.start_with?('binary')
+    }.map { |line|
+      line[/.* \".+\/([^\"]+)\".*$/, 1]
+    }.flat_map { |line|
+      # remove additional endings like .git, .json
+      File.basename(line, File.extname(line))
+    }.flat_map { |line|
+      path = Dir.glob(carthage_path + "Checkouts/#{line}/LICENSE*").first
+      if path
+        {:name => line, :path => path}
+      else
+        UI.important "⚠️  Missing license file for carthage package: #{line}. Make sure to fix this for release versions!"
+        next
+      end
+    }.compact.map { |cart|
+      cart[:body] = File.read(cart[:path])
+      cart
+    }
+  end
+
+  # Attempts to find a license file for each given framework item and return them in uniform format
+  # Params:
+  # +frameworks+:: array of {:name => STRING, :path => STRING} objects each describing a framework item to be included in the search
+  # Returns:
+  # +licenses+:: array of {:name => STRING, :body => STRING} objects which were aggregated from the frameworks' paths
+  def collect_local_licenses(framework_items: :framework_items)
+    UI.message "Collecting licenses for additional local frameworks"
+    framework_items.map { |framework|
+      path = Dir.glob(framework[:path] + "/LICENSE*").first
+      if path
+        {:name => framework[:name], :path => path}
+      else
+        UI.important "⚠️  Missing license file for package: #{framework[:name]}. Make sure to fix this for release versions!"
+        next
+      end
+    }.compact.map { |cart|
+      cart[:body] = File.read(cart[:path])
+      cart
+    }
+  end
+
+  # Downloads additional license files which aren't contained in the checkouts folder
+  # Params:
+  # +download_items+:: array of {:name => STRING, :url => STRING} objects to download
+  # Returns:
+  # +additional_licenses+:: array of {:name => STRING, :body => STRING} objects which were downloaded
+  def download_additional_licenses(download_items: :download_items)
+    download_items.flat_map { |download_item|
+      begin
+        UI.message "Downloading additional license for #{download_item[:name]}"
+        uri = URI.parse(download_item[:url])
+        http_object = Net::HTTP.new(uri.host, uri.port)
+        http_object.use_ssl = true if uri.scheme == 'https'
+        
+        http_object.start do |http|
+          request = Net::HTTP::Get.new uri.request_uri
+          http.read_timeout = 500
+          response = http.request request
+          unless response.code == '200'
+            raise "response code was #{response.code}"
+          end
+
+          {:name => download_item[:name], :body => response.read_body}
+        end
+        
+      rescue Exception => e
+        UI.important "⚠️  Error downloading additional license from #{download_item[:url]}. Make sure to fix this for release versions! - #{e.message}"
+        next
+      end
+    }.compact
+  end
+
+  # Writes aggregated license files to a single file
+  # Params:
+  # +output_file_path+:: STRING containing the file path to write the aggregated licenses to
+  # +licenses+:: array of {:name => STRING, :body => STRING} objects describing a license each
+  def write_licenses_to_file(output_file_path: :output_file_path, licenses: :licenses)
+    UI.message "Writing carthage licenses to single file"
+    begin
+      File.open(output_file_path, 'w') { |file|
+        file.puts "# Acknowledgements"
+        file.puts "This application makes use of the following third party libraries:"
+        file.puts ""
+
+        licenses
+          .sort {|a, b|
+            a[:name] <=> b[:name]
+          }
+          .map { |l|
+            file.puts ""
+            file.puts "## #{l[:name]}"
+            file.puts ""
+            file.puts l[:body]
+          }
+
+        file.puts ""
+      }
+    rescue Exception => e
+      UI.important "⚠️  Failed writing carthage licenses to #{output_file_path}. Make sure to fix this for release versions! - #{e.message}"
+    else
+      UI.message "🍻 Successfully finished writing carthage licenses to #{output_file_path}"
+    end
+  end
+
 end
