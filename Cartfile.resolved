@@ -2,6 +2,7 @@ binary "https://assets.braintreegateway.com/mobile/ios/carthage-frameworks/cardi
 binary "https://assets.braintreegateway.com/mobile/ios/carthage-frameworks/pp-risk-magnes/PPRiskMagnes.json" "5.2.0"
 binary "https://dl.google.com/dl/firebase/ios/carthage/FirebaseAnalyticsBinary.json" "8.7.0"
 binary "https://dl.google.com/dl/firebase/ios/carthage/FirebaseDatabaseBinary.json" "8.7.0"
+binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/master/Usabilla.json" "6.8.6"
 github "GEOSwift/GEOSwift" "8.1.0"
 github "GEOSwift/geos" "6.0.2"
 github "Mo7amedFouad/Amplitude-iOS" "v8.3.1"
