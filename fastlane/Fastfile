@@ -22,21 +22,9 @@ platform :ios do
     # clean zip folder
     FileUtils.rm_rf("../zipped/.", secure: true)
 
-    # checkout all dependencies
-    carthage(command: 'update', no_build: true)
-
-    puts 'Removing unecessary schemes for Realm '
-
-    # https://gist.github.com/bguidolim/46f05bea5e0e9534493010dd444d24f9
-    Dir.chdir(
-      '../Carthage/Checkouts/realm-cocoa/Realm.xcodeproj/xcshareddata/xcschemes',
-    ) do
-      sh "find . ! -name \"RealmSwift.xcscheme\" ! -name \"Realm.xcscheme\" -delete"
-    end
-
     # build all dependencies using xcframework option
     Dir.chdir('..') do
-      sh './carthage.sh build --platform iOS --use-xcframeworks --cache-builds'
+      sh './carthage.sh bootstrap --platform iOS --use-xcframeworks --cache-builds'
     end
 
     # convert all universal (FAT) frameworks to xcframeworks
