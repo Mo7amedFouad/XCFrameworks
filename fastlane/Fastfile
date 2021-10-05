@@ -10,7 +10,8 @@ platform :ios do
     UI.crash! 'tag name cannot be empty!' if tag_name.empty?
 
     ADDITIONAL_XCFRAMEWORK_DOWNLOADS = [
-      {name: 'NewRelic', url: 'https://download.newrelic.com/ios_agent/NewRelic_XCFramework_Agent_7.3.1.zip'}
+      {name: 'NewRelic', url: 'https://download.newrelic.com/ios_agent/NewRelic_XCFramework_Agent_7.3.1.zip'},
+      {name: 'Usabilla', url: 'https://github.com/usabilla/usabilla-u4a-ios-swift-sdk/releases/download/v6.8.6/UsabillaXCFramework.zip'}
     ]
     ADDITIONAL_LICENSE_DOWNLOADS = [
       {name: 'Firebase', url: 'https://raw.githubusercontent.com/firebase/firebase-ios-sdk/master/LICENSE'}
